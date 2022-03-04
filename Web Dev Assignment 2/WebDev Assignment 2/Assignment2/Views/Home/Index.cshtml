@@ -1,0 +1,252 @@
+﻿@{ ViewBag.Title = "South Australia Reservoir Volumes"; }
+
+@section styles {
+    <style>
+        /* Place temporary CSS here them move to Site.css when happy =) */
+    </style>
+}
+
+
+<!-- Do NOT change this html.  All work must be done via the script element -->
+<div class="row">
+    <div class="col-5">
+        <div class="border rounded border-info p-1" id="reservoirList">
+            <h3 class="text-center">Reservoir List</h3>
+           
+</div>
+    </div>
+    <div class="col-7" id="graphs">
+
+    </div>
+</div>
+
+
+@section scripts {
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/d3/d3.js"></script>
+
+    <script>
+        // write your JavaScript here
+        // example request provided
+
+        var request = $.ajax({
+            url: '/api/Reservoirs',
+            method: 'GET',
+            timeout: 5000
+        });
+
+        request.done(function (response) {
+            // TODO
+            alert("success");
+
+            var $table = $("<table>");
+            $table.addClass("table table-striped table-hover");
+            $($table).appendTo("#reservoirList");
+
+            var $thead = $("<thead>").appendTo($table);
+            var $tr = $("<tr>").appendTo($thead);
+            $("<th class='text-center'>").text('Name').appendTo($tr);
+            $("<th class='text-center'>").text('Capacity (ML)').appendTo($tr);
+            $('<th>').text('').appendTo($tr);
+
+            var $tbody = $('<tbody>').appendTo($table);
+            $.each(response, function (i, item) {
+                var resName = item.reservoirDetail.reservoirName;
+                var resCapacity = item.reservoirDetail.capacityML;
+
+                var $tr = $("<tr>").attr('title', "Click to view " + resName + " capacity data from " + item.dateRange.from + " to " + item.dateRange.to).appendTo($tbody);
+                $("<td class='text-center'>").text(resName).appendTo($tr);
+                $("<td class='text-center'>").text(resCapacity).appendTo($tr);
+
+                $("<a class='viewMapButton' target='_blank' id='mapLink'>").attr('href', 'https://google.com/maps/place/' + resName)
+                    .addClass("btn").text('View Map').appendTo($tr);
+
+                $tr.on("click", function () {
+
+
+                    var color = 'Highlight';
+                    var row = $tr.click(function (e) {
+                        row.removeClass(color);
+                        (this).addClass(color);
+                    });
+
+                    makeRequest(item);
+                })
+
+
+                function makeRequest(i) {
+                    var newRequest = $.ajax({
+                        url: '/api/Reservoirs/' + i.reservoirDetail.reservoirID,
+                        method: 'GET',
+                        timeout: 5000
+                    });
+
+                    newRequest.done(function (response) {
+                        alert("Got " + item.reservoirDetail.reservoirName + ". Item number " + item.reservoirDetail.reservoirID);
+
+
+                        //$tr.on("click", function () {
+                            //$("#graphs").empty();
+                        //})
+
+                        $.each(response, function (i, itemData) {
+
+
+                            var $rhead = $("<h3>").text(itemData.year);
+                            $rhead.appendTo("#graphs");
+
+                            var $records = $("<p>").text("Records: " + itemData.records + " dating from " + itemData.firstMonthName + " to " + itemData.lastMonthName);
+                            records.appendTo('#graphs');
+
+                            var $volume = $("<p>").text("Avg Volume: " + itemData.avgVolume);
+                            volume.appendTo('#graphs');
+
+                            //$("#graphs").append("<p>").text(item.reservoirDetail.reservoirName + " in " + itemData.year);
+
+                            var graphData = $.ajax({
+                                url: '/api/Reservoirs/' + item.reservoirDetail.reservoirID + "?year=" + itemData.year,
+                                method: 'GET',
+                                timeout: 5000,
+                            })
+
+                            graphData.done(function (response) {
+                                var svg = d3.select('#data')
+                                    .append('svg')
+                                    .attr('width', '100%')
+                                    .attr('height', '400')
+                                    .style('border', '1px solid #000');
+
+
+                                // determine size of graph
+                                var w = svg.node().getBoundingClientRect().width;
+                                var h = svg.node().getBoundingClientRect().height;
+
+
+                                var maxVolume = d3.max(graphData, function () { return itemData.avgVolume; });
+
+                                // sets dimensions
+                                var barMargin = 10;
+                                var barWidth = (w - chartMargin.left - chartMargin.right) / graphData.length;
+
+                                // selects all of the bar groups
+                                var barGroups = chartGroup
+                                    .selectAll('g')
+                                    .data(graphData);
+
+                                // adds the new bar groups to the graph
+                                var newBarGroups = barGroups.enter()
+                                    .append('g')
+                                    .attr('transform', function (d, i) {
+                                        return 'translate('
+                                            + (xScale(graphData.monthName))
+                                            + ','
+                                            + (yScale(itemData.avgVolume))
+                                            + ')';
+                                    }
+                                );
+
+                                // rotating the text
+                                newBarGroups
+                                    .append('rect')
+                                    .attr('x', 0)
+                                    .attr('height', function (d, i) {
+                                        return h - yScale(itemData.avgVolume);
+                                    })
+                                    .attr('width', barWidth - barMargin)
+
+                                    .style('fill', 'transparent')
+                                    .transition().duration(function (d, i) { return i * 500; })
+                                    .delay(function (d, i) { return i + 200; })
+
+                                    .style("fill", function (d, index) {
+                                        return "hsl(0, 100%, " + (itemData.avgVolume / maxVolume * 80) + "%)"
+                                    });
+
+
+                                // Creates the YScale
+                                var yScale = d3.scaleLinear()
+                                    .domain([0, maxVolume])
+                                    .range([h, chartMargin.top]);
+
+                                // creates the yAxis and adds it the the current page
+                                var yAxis = d3.axisLeft(yScale); 
+                                chartGroup.append('g')
+                                    .classed('axis y', true)
+                                    .call(yAxis);
+
+
+                               // creates the margins
+                                var chartMargin = new Object();
+                                chartMargin.left = 40;
+                                chartMargin.right = 25;
+                                chartMargin.top = 25;
+                                chartMargin.bottom = 40;
+                                h = h - chartMargin.bottom - chartMargin.top;
+
+                                // adds the text for the bars in the graph
+                                newBarGroups
+                                    .append('text')
+                                    .attr("text-anchor", "middle")
+                                    .attr('x', function () { return xScale.bandwidth() / 2; })
+                                    .attr('y', 20)
+                                    .attr('fill', 'white')
+                                    .text(function (d, i) { return itemData.avgVolume; })
+                                    .style('font-size', '1em')
+
+                                // Creates the xScale
+                                var xScale = d3.scaleBand()
+                                    .domain(graphData.map(function (d) { return graphData.monthName; }))
+                                    .range([0, w - chartMargin.left - chartMargin.right])
+                                    .paddingInner(0.15);
+
+                               
+                                var chartGroup = svg.append('g')
+                                    .classed('chartGroup', true)
+                                    .attr('transform', 'translate(' + chartMargin.left + ',' + chartMargin.top + ')');
+
+
+                                // Creates the xAxis the sits at the bottom area of the graph
+                                var xAxis = d3.axisBottom(xScale); 
+                                chartGroup.append('g')
+                                    .attr('transform', 'translate(0,' + h + ')')
+                                    .classed('axis x', true)
+                                    .call(xAxis)
+                                    .selectAll('text')
+                                    .attr("transform", "rotate(-70)")
+                                    .attr("dx", "-0.8em")
+                                    .attr("dy", "0.25em")
+                                    .style("text-anchor", "end")
+                                    .style("font-size", "0.8em"); 
+
+                            })
+                            
+                            graphData.fail(function (response) {
+                                alert("Failed to create graph");
+                            })
+                        });
+                    });
+
+                    newRequest.fail(function () {
+                        alert("Failed to retrieve details")
+                    })
+
+                };
+             
+            });
+
+            
+          
+
+        });
+
+        request.fail(function () {
+            // TODO
+            // append error message on page
+            alert("Failed to load Reservoir Data");
+        });
+
+
+    </script>
+}
+

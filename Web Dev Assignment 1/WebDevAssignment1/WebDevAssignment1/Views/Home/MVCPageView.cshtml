@@ -1,0 +1,16 @@
+﻿@model List<WebDevAssignment1.Models.Thing>
+
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="col-3 " style="margin-top: 50px;">
+        <p class="titleMain text-center">@item.item_ID .
+        <a href="~/Details.aspx" target="_blank" class="linkGreen">@item.title</a></p>
+        <img src="@item.image" alt="@item.title" class="thumbnail"/>
+        <p class="shortDesc text-center">@item.shortDesc</p>
+    </div>
+}

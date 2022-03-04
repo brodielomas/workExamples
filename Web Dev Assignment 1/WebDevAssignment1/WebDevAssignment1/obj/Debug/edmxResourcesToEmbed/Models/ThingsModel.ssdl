@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ThingsToDoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\BRODIE\SOURCE\REPOS\WEBDEVASSIGNMENT1\WEBDEVASSIGNMENT1\APP_DATA\14THINGSTODO.MDF.dbo.Categories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="materialsRequired" />
+      <PropertyRef Name="internetRequired" />
+    </Key>
+    <Property Name="category_ID" Type="float" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="255" />
+    <Property Name="materialsRequired" Type="bit" Nullable="false" />
+    <Property Name="internetRequired" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\BRODIE\SOURCE\REPOS\WEBDEVASSIGNMENT1\WEBDEVASSIGNMENT1\APP_DATA\14THINGSTODO.MDF.dbo.Things' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Things">
+    <Key>
+      <PropertyRef Name="soloActivity" />
+    </Key>
+    <Property Name="item_ID" Type="float" />
+    <Property Name="category_ID" Type="float" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" />
+    <Property Name="timeCommitment" Type="nvarchar" MaxLength="255" />
+    <Property Name="soloActivity" Type="bit" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="255" />
+    <Property Name="shortDesc" Type="nvarchar" MaxLength="255" />
+    <Property Name="longDesc" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="ThingsToDoModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Categories].[category_ID] AS [category_ID], 
+    [Categories].[category_name] AS [category_name], 
+    [Categories].[materialsRequired] AS [materialsRequired], 
+    [Categories].[internetRequired] AS [internetRequired]
+    FROM [dbo].[Categories] AS [Categories]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Things" EntityType="Self.Things" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Things].[item_ID] AS [item_ID], 
+    [Things].[category_ID] AS [category_ID], 
+    [Things].[title] AS [title], 
+    [Things].[timeCommitment] AS [timeCommitment], 
+    [Things].[soloActivity] AS [soloActivity], 
+    [Things].[image] AS [image], 
+    [Things].[shortDesc] AS [shortDesc], 
+    [Things].[longDesc] AS [longDesc]
+    FROM [dbo].[Things] AS [Things]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

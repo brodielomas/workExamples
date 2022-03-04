@@ -1,0 +1,41 @@
+C:\Users\jacko\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.exe.config
+C:\Users\jacko\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.exe
+C:\Users\jacko\source\repos\Assignment3\Assignment3\bin\Debug\Assignment3.pdb
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csprojAssemblyReference.cache
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.Properties.Resources.resources
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.GenerateResource.cache
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CoreCompileInputs.cache
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.exe
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.pdb
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.InputWindow.resources
+C:\Users\jacko\source\repos\Assignment3\Assignment3\obj\Debug\Assignment3.DisplayWindow.resources
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\bin\Debug\Assignment3.exe.config
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\bin\Debug\Assignment3.exe
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\bin\Debug\Assignment3.pdb
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.csprojAssemblyReference.cache
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.DisplayWindow.resources
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.InputWindow.resources
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.Properties.Resources.resources
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.GenerateResource.cache
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CoreCompileInputs.cache
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.exe
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.pdb
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CopyComplete
+C:\Users\Brodie\Desktop\Assignment3\Assignment3\obj\Debug\Assignment3.TournamentDisplay.resources
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\bin\Debug\Assignment3.exe.config
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\bin\Debug\Assignment3.exe
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\bin\Debug\Assignment3.pdb
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\bin\Debug\Newtonsoft.Json.dll
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\bin\Debug\Newtonsoft.Json.xml
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.csprojAssemblyReference.cache
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.DisplayWindow.resources
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.InputWindow.resources
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.Properties.Resources.resources
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.TournamentDisplay.resources
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.GenerateResource.cache
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CoreCompileInputs.cache
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.csproj.CopyComplete
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.exe
+F:\Desktop\Uni Work\2019\Semester 1\Agile Development with .NET\Assignment 3\Assignment3\Assignment3\obj\Debug\Assignment3.pdb

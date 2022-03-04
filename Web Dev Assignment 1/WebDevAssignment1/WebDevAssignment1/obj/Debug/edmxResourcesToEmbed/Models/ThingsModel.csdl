@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ThingsToDoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="materialsRequired" />
+      <PropertyRef Name="internetRequired" />
+    </Key>
+    <Property Name="category_ID" Type="Double" />
+    <Property Name="category_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="materialsRequired" Type="Boolean" Nullable="false" />
+    <Property Name="internetRequired" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Things" Relationship="ThingsToDoModel.CategoryThing" FromRole="Category" ToRole="Thing" />
+  </EntityType>
+  <EntityType Name="Thing">
+    <Key>
+      <PropertyRef Name="soloActivity" />
+    </Key>
+    <Property Name="item_ID" Type="Double" />
+    <Property Name="category_ID" Type="Double" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="timeCommitment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="soloActivity" Type="Boolean" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="shortDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="longDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="ThingsToDoModel.CategoryThing" FromRole="Thing" ToRole="Category" />
+    <Property Name="Category_materialsRequired" Type="Boolean" Nullable="false" />
+    <Property Name="Category_internetRequired" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ThingsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Things" EntityType="Self.Thing" />
+    <AssociationSet Name="CategoryThing" Association="ThingsToDoModel.CategoryThing">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Thing" EntitySet="Things" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="CategoryThing">
+    <End Type="ThingsToDoModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="ThingsToDoModel.Thing" Role="Thing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="materialsRequired" />
+        <PropertyRef Name="internetRequired" />
+      </Principal>
+      <Dependent Role="Thing">
+        <PropertyRef Name="Category_materialsRequired" />
+        <PropertyRef Name="Category_internetRequired" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

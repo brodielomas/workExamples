@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ThingsToDoModelStoreContainer" CdmEntityContainer="ThingsEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ThingsToDoModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="materialsRequired" ColumnName="materialsRequired" />
+          <ScalarProperty Name="internetRequired" ColumnName="internetRequired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Things">
+      <EntityTypeMapping TypeName="ThingsToDoModel.Thing">
+        <MappingFragment StoreEntitySet="Things">
+          <ScalarProperty Name="item_ID" ColumnName="item_ID" />
+          <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="timeCommitment" ColumnName="timeCommitment" />
+          <ScalarProperty Name="soloActivity" ColumnName="soloActivity" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="shortDesc" ColumnName="shortDesc" />
+          <ScalarProperty Name="longDesc" ColumnName="longDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
